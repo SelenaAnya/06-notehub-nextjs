@@ -28,10 +28,8 @@ export default function NoteForm({ onSubmit }: NoteFormProps) {
 
     return (
         <form className={css.form} onSubmit={handleSubmit}>
-            <div className={css.field}>
-                <label htmlFor="title" className={css.label}>
-                    Title
-                </label>
+            <div className={css.formGroup}>  {/* ✅ Існує в CSS */}
+                <label htmlFor="title">Title</label>
                 <input
                     type="text"
                     id="title"
@@ -42,10 +40,8 @@ export default function NoteForm({ onSubmit }: NoteFormProps) {
                     required
                 />
             </div>
-            <div className={css.field}>
-                <label htmlFor="content" className={css.label}>
-                    Content
-                </label>
+            <div className={css.formGroup}>  {/* ✅ Існує в CSS */}
+                <label htmlFor="content">Content</label>
                 <textarea
                     id="content"
                     className={css.textarea}
@@ -56,7 +52,7 @@ export default function NoteForm({ onSubmit }: NoteFormProps) {
                     required
                 />
             </div>
-            <button type="submit" className={css.submitBtn}>
+            <button type="submit" className={css.submitButton}>  {/* ✅ Існує в CSS */}
                 Create Note
             </button>
         </form>
