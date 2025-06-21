@@ -9,18 +9,17 @@ interface NoteDetailsPageProps {
     };
 }
 
-export default async function NoteDetailsPage({ params }: NoteDetailsPageProps) {
+export default async function NoteDetailsPage(props: { params: Promise<{ id: string }> }) {
+    const { id } = await props.params;
     const queryClient = new QueryClient();
-    const noteId = parseInt(params.id, 10);
+    const noteId = parseInt(id, 10);
 
-    // Prefetch data for hydration
     try {
         await queryClient.prefetchQuery({
             queryKey: ['note', noteId],
             queryFn: () => fetchNoteById(noteId),
         });
     } catch (error) {
-        // Handle prefetch error gracefully
         console.error('Failed to prefetch note:', error);
     }
 
