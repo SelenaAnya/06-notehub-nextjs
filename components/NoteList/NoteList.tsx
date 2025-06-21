@@ -17,23 +17,24 @@ export default function NoteList({ notes, onDelete }: NoteListProps) {
             {notes.map((note) => (
                 <li key={note.id} className={css.listItem}>  {/* ✅ */}
                     <h3 className={css.title}>{note.title}</h3>
-                    <p className={css.content}>{note.content}</p>  {/* ✅ */}
+                    <p className={css.content}>{note.content}</p>  {/* */}
                     <p className={css.date}>
                         {new Date(note.createdAt).toLocaleDateString()}
                     </p>
-                    <div className={css.footer}>  {/* ✅ Додано footer */}
-                        <Link href={`/notes/${note.id}`} className={css.link}>  {/* ✅ */}
+                    <div className={css.footer}>  {/* */}
+                        <Link href={`/notes/${note.id}`} className={css.link}>  {/* */}
                             View details
                         </Link>
                         <button
-                            className={css.button}  {/* ✅ */}
+                            className={css.button}
                             onClick={() => onDelete(note.id)}
                         >
                             Delete
                         </button>
                     </div>
-                </li>
-            ))}
+                </li>)
+            )}
         </ul>
     );
 }
+
