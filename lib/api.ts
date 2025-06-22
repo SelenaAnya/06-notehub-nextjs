@@ -1,3 +1,4 @@
+// lib/api.ts
 import axios, { type AxiosResponse } from 'axios';
 import { Note, CreateNoteData, UpdateNoteData } from '../types/note';
 
@@ -19,7 +20,6 @@ const api = axios.create({
   }
   
   export interface NotesResponse {
-    items: any;
     notes: Note[];
     totalPages: number;
   }
@@ -30,20 +30,27 @@ const api = axios.create({
     search?: string;
   }
   
-  export const fetchNotes = async (currentPage: number, debounceSearchTerm: string, perPage: number, params: FetchNotesParams = {}): Promise<NotesResponse> => {
-    const { page = 1, search } = params;
-    
+  export const fetchNotes = async (
+    currentPage: number = 1, 
+    debounceSearchTerm: string = '', 
+    perPage: number = 12
+  ): Promise<NotesResponse> => {
     const queryParams = new URLSearchParams({
-      page: page.toString(),
+      page: currentPage.toString(),
       perPage: perPage.toString(),
     });
     
-    if (search && search.trim()) {
-      queryParams.append('search', search.trim());
+    if (debounceSearchTerm && debounceSearchTerm.trim()) {
+      queryParams.append('search', debounceSearchTerm.trim());
     }
   
-    const response: AxiosResponse<NotesResponse> = await api.get(`?${queryParams}`);
-    return response.data;
+    try {
+      const response: AxiosResponse<NotesResponse> = await api.get(`?${queryParams}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching notes:', error);
+      throw error;
+    }
   };
   
   export const createNote = async (noteData: CreateNoteRequest): Promise<Note> => {
