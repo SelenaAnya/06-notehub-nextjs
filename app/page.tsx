@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import css from './page.module.css';
 
 export default function HomePage() {
@@ -25,9 +25,9 @@ export default function HomePage() {
           and productivity.
         </p>
         <div className={css.cta}>
-          <Link href="/notes" className={css.ctaButton}>
+          <link href="/notes" className={css.ctaButton}>
             Start Taking Notes
-          </Link>
+          </link>
         </div>
       </div>
     </main>
