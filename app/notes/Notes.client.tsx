@@ -2,19 +2,19 @@
 
 import { useState } from 'react';
 import { fetchNotes } from '@/lib/api';
+import NoteModal from '@/components/NoteModal/NoteModal';
+import Pagination from '@/components/Pagination/Pagination';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import css from './NotesPage.module.css';
 import NoteList from '@/components/NoteList/NoteList';
-import NoteModal from '@/components/NoteModal/NoteModal';
 import SearchBox from '@/components/SearchBox/SearchBox';
-import Pagination from '@/components/Pagination/Pagination';
 import { useDebounce } from 'use-debounce';
 
 export default function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [debounceSearchTerm] = useDebounce(searchTerm, 1000 );
+    const [debounceSearchTerm] = useDebounce(searchTerm, 1000);
       const perPage = 12;
   
     const { data, isLoading, isError } = useQuery({

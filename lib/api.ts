@@ -29,7 +29,7 @@ const api = axios.create({
     search?: string;
   }
   
-  export const fetchNotes = async (params: FetchNotesParams = {}): Promise<NotesResponse> => {
+  export const fetchNotes = async (currentPage: number, debounceSearchTerm: string, perPage: number, params: FetchNotesParams = {}): Promise<NotesResponse> => {
     const { page = 1, perPage = 12, search } = params;
     
     const queryParams = new URLSearchParams({
