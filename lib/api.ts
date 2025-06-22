@@ -40,9 +40,9 @@ const api = axios.create({
       perPage: perPage.toString(),
     });
     
-    if (debounceSearchTerm && debounceSearchTerm.trim()) {
-      queryParams.append('search', debounceSearchTerm.trim());
-    }
+    if (debounceSearchTerm?.trim()) {
+        queryParams.append('search', debounceSearchTerm.trim());
+      }
   
     try {
       const response: AxiosResponse<NotesResponse> = await api.get(`?${queryParams}`);
@@ -60,5 +60,10 @@ const api = axios.create({
   
   export const deleteNote = async (id: number): Promise<Note> => {
     const response: AxiosResponse<Note> = await api.delete(`/${id}`);
+    return response.data;
+};
+  
+export const fetchNoteById = async (id: number): Promise<Note> => {
+    const response: AxiosResponse<Note> = await api.get(`/${id}`);
     return response.data;
   };
