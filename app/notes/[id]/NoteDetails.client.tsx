@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { fetchNoteById } from '../../../lib/api';
+import { fetchNotes  } from '@/lib/api';
 import css from './NoteDetails/NoteDetails.module.css';
 
 export default function NoteDetailsClient() {
@@ -11,7 +11,7 @@ export default function NoteDetailsClient() {
 
     const { data: note, isLoading, error } = useQuery({
         queryKey: ['note', noteId],
-        queryFn: () => fetchNoteById(noteId),
+        queryFn: () => fetchNotes (noteId),
     });
 
     if (isLoading) return <p>Loading, please wait...</p>;
