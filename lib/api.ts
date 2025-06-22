@@ -19,6 +19,7 @@ const api = axios.create({
   }
   
   export interface NotesResponse {
+    items: any;
     notes: Note[];
     totalPages: number;
   }
