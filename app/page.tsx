@@ -24,11 +24,11 @@ export default function HomePage() {
           NoteHub offers a streamlined experience for anyone who values clarity
           and productivity.
         </p>
-        <div className={css.cta}>
+        {/* <div className={css.cta}>
           <link href="/notes" className={css.ctaButton}>
             Start Taking Notes
           </link>
-        </div>
+        </div> */}
       </div>
     </main>
   );
