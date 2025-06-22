@@ -7,15 +7,15 @@ export interface Note {
     tag: string;
   }
 
-export interface CreateNoteData {
-    title: string;
-    content: string;
-}
+// export interface CreateNoteData {
+//     title: string;
+//     content: string;
+// }
 
-export interface UpdateNoteData {
-    title?: string;
-    content?: string;
-}
+// export interface UpdateNoteData {
+//     title?: string;
+//     content?: string;
+// }
 
 export interface NewNoteData {
     title: string;
