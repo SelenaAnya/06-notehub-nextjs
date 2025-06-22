@@ -1,6 +1,6 @@
 import css from './NoteForm.module.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { NewNoteData } from '../../types/note';
+import type { NewNoteData } from '@/types/note';
 import { createNote } from '@/lib/api';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
