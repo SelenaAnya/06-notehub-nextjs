@@ -24,30 +24,6 @@ export default function HomePage() {
           NoteHub offers a streamlined experience for anyone who values clarity
           and productivity.
         </p>
-
-        <div className={css.features}>
-          <div className={css.feature}>
-            <h3 className={css.featureTitle}>Easy Organization</h3>
-            <p className={css.featureDescription}>
-              Keep all your notes organized in one place with intuitive categorization
-            </p>
-          </div>
-
-          <div className={css.feature}>
-            <h3 className={css.featureTitle}>Powerful Search</h3>
-            <p className={css.featureDescription}>
-              Find any note instantly with our advanced search functionality
-            </p>
-          </div>
-
-          <div className={css.feature}>
-            <h3 className={css.featureTitle}>Clean Interface</h3>
-            <p className={css.featureDescription}>
-              Focus on your thoughts with our distraction-free writing environment
-            </p>
-          </div>
-        </div>
-
         <div className={css.cta}>
           <Link href="/notes" className={css.ctaButton}>
             Start Taking Notes

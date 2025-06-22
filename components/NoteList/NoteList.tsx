@@ -1,62 +1,41 @@
-import Link from 'next/link';
+// 'use client';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteNote } from '@/lib/api';
 import { Note } from '../../types/note';
 import css from './NoteList.module.css';
 
 interface NoteListProps {
-    notes: Note[];
-    onDelete: (id: number) => void;
-    isLoading?: boolean;
+  notes: Note[];
 }
-
-export default function NoteList({ notes, onDelete, isLoading = false }: NoteListProps) {
-    if (isLoading) {
-        return <div className={css.emptyMessage}>Loading notes...</div>;
-    }
-
-    if (notes.length === 0) {
-        return <div className={css.emptyMessage}>No notes found. Create your first note!</div>;
-    }
-
-    const handleDelete = (id: number, title: string) => {
-        if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
-            onDelete(id);
-        }
-    };
-
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-    };
-
+export default function NoteList({ notes }: NoteListProps) {
+    const queryClient = useQueryClient();
+  
+    const mutation = useMutation({
+      mutationFn: (id: number) => deleteNote(id),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['notes'] });
+      },
+    });
+  
     return (
-        <ul className={css.list}>
-            {notes.map((note) => (
-                <li key={note.id} className={css.listItem}>
-                    <h3 className={css.title}>{note.title}</h3>
-                    <p className={css.content}>{note.content}</p>
-                    <p className={css.date}>
-                        Created: {formatDate(note.createdAt)}
-                    </p>
-                    <div className={css.footer}>
-                        <Link href={`/notes/${note.id}`} className={css.link}>
-                            View Details
-                        </Link>
-                        <button
-                            className={css.button}
-                            onClick={() => handleDelete(note.id, note.title)}
-                            title={`Delete "${note.title}"`}
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </li>
-            ))}
-        </ul>
+      <ul className={css.list}>
+        {notes.map(note => (
+          <li key={note.id} className={css.listItem}>
+            <h2 className={css.title}>{note.title}</h2>
+            <p className={css.content}>{note.content}</p>
+            <div className={css.footer}>
+              <span className={css.tag}>{note.tag}</span>
+              <button
+                type="button"
+                className={css.button}
+                onClick={() => mutation.mutate(note.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
     );
-}
+  }
