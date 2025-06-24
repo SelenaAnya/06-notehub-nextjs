@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes, type NotesResponse } from '@/lib/api';
 import NoteModal from '@/components/NoteModal/NoteModal';
 import Pagination from '@/components/Pagination/Pagination';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
@@ -9,16 +9,6 @@ import css from './NotesPage.module.css';
 import NoteList from '@/components/NoteList/NoteList';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import { useDebounce } from 'use-debounce';
-
-interface NotesResponse {
-  notes: Array<{
-    id: string;
-    title: string;
-    content: string;
-    tag: string;
-  }>;
-  totalPages: number;
-}
 
 interface NotesClientProps {
   initialData: NotesResponse;
