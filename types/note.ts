@@ -1,11 +1,11 @@
 export interface Note {
-    id: number;
-    title: string;
-    content: string;
-    createdAt: string;
-    updatedAt: string;
-    tag: string;
-  }
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  tag: string;
+}
 
 // export interface CreateNoteData {
 //     title: string;
@@ -18,7 +18,7 @@ export interface Note {
 // }
 
 export interface NewNoteData {
-    title: string;
-    content: string;
-    tag: string;
-  }
+  title: string;
+  content: string;
+  tag: string;
+}
